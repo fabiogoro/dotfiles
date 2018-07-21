@@ -1,0 +1,11 @@
+xlogin*allowNullPasswd: true
+xlogin*greetColor: #222222
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #222222, #0088cc, #0088cc
+rofi.color-normal: #222222, #888888, #222222, #333333, #ffffff
+rofi.color-active: #222222, #0088cc, #222222, #333333, #0088cc
+rofi.color-urgent: #222222, #f3843d, #222222, #333333, #ffc39c
