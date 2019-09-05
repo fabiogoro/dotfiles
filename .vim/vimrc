@@ -7,7 +7,6 @@ Plugin 'Vundle.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'raimondi/delimitmate'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
@@ -25,9 +24,6 @@ vmap <C-t> <S->>
 vmap <C-d> <S-<>
 nmap <C-t> i<C-t>
 nmap <C-d> i<C-d>
-nmap F <Plug>(easymotion-F)
-nmap f <Plug>(easymotion-f)
-nmap w <Plug>(easymotion-bd-w)
 nmap l :bnext<cr>
 nmap h :bprev<cr>
 nmap L :vs<cr>
