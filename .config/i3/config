@@ -15,7 +15,8 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:DejaVu Mono Bold 8, Awesome Bold 8
+font pango:DejaVu Sans Mono for Powerline Bold 8, Awesome Bold 8
+focus_on_window_activation urgent
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -33,7 +34,9 @@ floating_modifier $mod
 floating_maximum_size 800x600
 
 # start a terminal
-bindsym $mod+Return exec termite -e '/bin/zsh -l'
+bindsym $mod+Shift+Return exec alacritty
+bindsym $mod+Return [class="Alacritty"] focus
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -53,10 +56,10 @@ bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -82,13 +85,13 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
 bindsym $mod+e layout tabbed
-#bindsym $mod+e layout toggle split
+bindsym $mod+Shift+s layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -153,35 +156,34 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+F3 exec setxkbmap br && xmodmap /home/user/.Xmodmap
-bindsym $mod+XF86AudioRaiseVolume exec setxkbmap br && xmodmap /home/user/.Xmodmap
-bindsym $mod+Shift+XF86AudioRaiseVolume exec setxkbmap us dvorak && xmodmap /home/user/.Xmodmap
-bindsym $mod+F2 exec setxkbmap us && xmodmap /home/user/.Xmodmap
-bindsym $mod+XF86AudioLowerVolume exec setxkbmap us && xmodmap /home/user/.Xmodmap
-bindsym $mod+F1 exec setxkbmap us intl && xmodmap /home/user/.Xmodmap
-bindsym $mod+XF86AudioMute exec setxkbmap us intl && xmodmap /home/user/.Xmodmap
+bindsym $mod+F1 exec setxkbmap us && xmodmap /home/user/.Xmodmap && rm /home/user/.config/kbd
+bindsym XF86AudioMute exec setxkbmap us && xmodmap /home/user/.Xmodmap && rm /home/user/.config/kbd
+bindsym $mod+F2 exec setxkbmap us intl && xmodmap /home/user/.Xmodmap && touch /home/user/.config/kbd
+bindsym XF86AudioLowerVolume exec setxkbmap us intl && xmodmap /home/user/.Xmodmap && touch /home/user/.config/kbd
+bindsym $mod+F3 exec setxkbmap br && xmodmap /home/user/.Xmodmap && touch /home/user/.config/kbd
+bindsym XF86AudioRaiseVolume exec setxkbmap br && xmodmap /home/user/.Xmodmap && touch /home/user/.config/kbd
+bindsym $mod+F5 exec setxkbmap il phonetic && xmodmap /home/user/.Xmodmap && touch /home/user/.config/kbd
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false && pactl set-sink-volume alsa_output.pci-0000_00_09.2.analog-stereo +10%
-bindsym $mod+3 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false && pactl set-sink-volume alsa_output.pci-0000_00_09.2.analog-stereo +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false && pactl set-sink-volume alsa_output.pci-0000_00_09.2.analog-stereo -10%
-bindsym $mod+2 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false && pactl set-sink-volume alsa_output.pci-0000_00_09.2.analog-stereo -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo true
-bindsym $mod+1 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo true
-bindsym Shift+XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false
-bindsym $mod+Shift+1 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false
-bindsym XF86MonBrightnessUp exec bash /home/user/.bin/morelight 
-bindsym XF86MonBrightnessDown exec bash /home/user/.bin/lesslight 
-bindsym XF86Sleep exec bash /home/user/.bin/killx
+bindsym F3 exec --no-startup-id amixer set Master 5%+
+#bindsym $mod+3 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false && pactl set-sink-volume alsa_output.pci-0000_00_09.2.analog-stereo +10%
+bindsym F2 exec --no-startup-id amixer set Master 5%-
+#bindsym $mod+2 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false && pactl set-sink-volume alsa_output.pci-0000_00_09.2.analog-stereo -10%
+bindsym F1 exec --no-startup-id amixer-toggle-mute
+#bindsym $mod+1 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo true
+#bindsym Shift+XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false
+#bindsym $mod+Shift+1 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_09.2.analog-stereo false
+bindsym XF86MonBrightnessUp exec light -A 25
+bindsym XF86MonBrightnessDown exec light -U 25
+#bindsym XF86Sleep exec bash /home/user/.bin/killx
 
-bindsym Print exec import -window root screenshot.jpg
+bindsym --release Print exec scrot -s ~/screenshot.png
 bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
-bindsym $mod+z workspace back_and_forth
+bindsym $mod+space workspace back_and_forth
 workspace_auto_back_and_forth yes
-bindsym $mod+b [class="qutebrowser"] focus
-bindsym $mod+Shift+Return exec --no-startup-id qutebrowser
-bindsym $mod+o exec --no-startup-id qutebrowser
-bindsym Control+t exec --no-startup-id firefox
-bindsym $mod+t exec --no-startup-id firefox
+bindsym $mod+Shift+t exec opera
+bindsym $mod+t [class="Opera"] focus
+bindsym --whole-window button9 [class="Alacritty"] focus
+bindsym --whole-window button8 [class="Opera"] focus
 bindsym $mod+Shift+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 bindsym $mod+Escape exec shutdown
@@ -196,15 +198,20 @@ bindsym $mod+F4 kill
 bindsym $mod+w kill
 bindsym $mod+c exec i3lock-wrapper
 bindsym --release button2 kill
+bindsym $mod+Up move workspace to output next
 
 workspace_layout tabbed
 new_window pixel 2
-assign [class="Termite"] Terminal
-for_window [class="Termite"] focus
+assign [class="Alacritty"] Terminal
+for_window [class="Alacritty"] focus
 assign [class="qutebrowser"] Browser
 for_window [class="qutebrowser"] focus
-assign [class="Firefox"] Browser
-for_window [class="Firefox"] focus
+assign [class="Opera"] Browser
+for_window [class="Opera"] focus
+assign [class="code-oss"] VSCode
+for_window [class="code-oss"] focus
+assign [class="zoom"] Zoom
+for_window [class="zoom"] focus
 assign [class=".*"] Desktop
 for_window [class=".*"] focus
 
@@ -212,15 +219,15 @@ for_window [class=".*"] focus
 # finds out, if available)
 bar {
   status_command i3status
-    colors {
-      separator #666666
-        background #222222
-        statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
-    }
+  colors {
+    separator #666666
+      background #222222
+      statusline #dddddd
+      focused_workspace #0088CC #0088CC #ffffff
+      active_workspace #333333 #333333 #ffffff
+      inactive_workspace #333333 #333333 #888888
+      urgent_workspace #2f343a #900000 #ffffff
+  }
 }
 
 client.focused #0088CC #0088CC #ffffff #dddddd
@@ -229,3 +236,4 @@ client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
 
 #exec --no-startup-id feh --bg-scale .wallpaper
+mouse_warping none

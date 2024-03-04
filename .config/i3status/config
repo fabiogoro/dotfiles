@@ -12,9 +12,11 @@ general {
 }
 
 #order += "ipv6"
-#order += "disk /"
+order += "path_exists kbd"
+order += "disk /"
 order += "cpu_usage"
-#order += "cpu_temperature 0"
+order += "cpu_temperature 0"
+order += "memory"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
 order += "wireless _first_"
@@ -27,7 +29,9 @@ order += "tztime local"
 volume master {
   format = "%volume"
   format_muted = "%volume"
-  device = "pulse"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
 	color_degraded = "#888888"
 }
 
@@ -46,7 +50,8 @@ ethernet _first_ {
 }
 
 battery 1 {
-  format = "%percentage%status"
+  format = "%percentage %status"
+  path = "/sys/class/power_supply/BAT0/uevent"
 	status_full = ""
 	status_chr = ""
 	status_bat = ""
@@ -71,14 +76,24 @@ load {
 }
 
 cpu_usage {
-        format = "%usage"
+        format = "%usage "
 }
 
 disk "/" {
-        format = " %avail"
+        prefix_type = "decimal"
+        format = "%used "
 }
 
 cpu_temperature 0 {
         format = "%degrees °C"
-        path = "/sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/temp1_input"
+}
+
+memory {
+        memory_used_method="memavailable"
+        format = "%used/%total"
+}
+path_exists kbd {
+        format_down = ""
+        format = "int"
+        path = "/home/user/.config/kbd"
 }
